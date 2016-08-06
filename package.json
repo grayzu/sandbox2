@@ -1,0 +1,23 @@
+{
+  "name": "sandbox",
+  "version": "0.1.0",
+  "description": "Sandbox for learning Node.js",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies" : {
+    "express": "4.14.0",
+    "ejs": "2.5.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grayzu/sandbox2.git"
+  },
+  "author": "MarkG",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/grayzu/sandbox2/issues"
+  },
+  "homepage": "https://github.com/grayzu/sandbox2#readme"
+}
