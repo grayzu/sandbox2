@@ -1,10 +1,68 @@
-//*** Node.js lesson using file system ***
-var fs = require('fs');
 
-var files = fs.readdirSync('./');
 
-console.log(files);
 
+// // *** Node.js lesson using file streams ***
+// var fs = require('fs');
+
+// var readmeStream = fs.createReadStream('./README.md', {encoding:'UTF-8'});
+
+// var readme2 = fs.createWriteStream('./Readme2.md',{encoding:'UTF-8'});
+
+// readmeStream.on('data', function(chunk) {
+
+//     readme2.write(chunk, function(err){
+//         if(err) {
+//             throw err;
+//         }
+//     });
+// });
+
+// readmeStream.on('end', function(err){
+//     if(err){
+//         throw err;
+//     }
+
+//     readme2.end();
+//     console.log('Finished writing ./Readme2.md.');
+//     process.exit();
+// });
+
+// // *** Node.js lesson using file system ***
+// var fs = require('fs');
+// var path = require('path');
+
+// fs.readdir('./', function(err, files){
+//     if(err){
+//         throw err;
+//     }
+//     console.log(files);
+// });
+
+// console.log('Reading files from current directory...');
+
+// var fileStats = fs.statSync('./README.md');
+// if( fileStats.isFile()){
+//     fs.readFile('./README.md','UTF-8',function(err, data){
+//         if(err){
+//             console.log(err);
+//         }
+//         console.log(data);
+//     });
+// }
+
+// fs.readdir('./junk', function(err, files){
+//     files.forEach(function(file) {
+//         fs.unlink(path.join('./junk', file));
+//     });
+
+//     fs.rmdir('./junk', function(err){
+//         if(err){
+//             throw err;
+//         }
+//     });
+// });
+
+// console.log('Removing files from ./junk');
 
 // // *** Node.js lesson using exec and spawn ***
 // var exec = require('child_process').exec;
@@ -25,7 +83,7 @@ console.log(files);
 //     process.exit();
 // });
 
-// *** Node.js lesson using Events  ***
+// // *** Node.js lesson using Events  ***
 // var emitter = require('events').EventEmitter;
 // var util = require('util');
 // var readline = require('readline');
