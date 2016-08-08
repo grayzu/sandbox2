@@ -1,5 +1,89 @@
+/* jshint esnext: true */
+
+// ** Node.js lesson using express.js to host web site **
+var express = require('express');
+var cors = require('cors');
+var bodyParser = require('body-parser');
+
+var terms = [
+        {term:'Gnar',
+        defined:'something that is or looks very technically hard.'},
+        {term:'Twin tip',
+        defined:'Skis where both the front and back curve up.'},
+        {term:'Bonk',
+        defined:'Crash.'},
+        {term:'Flub',
+        defined:'Mistake.'}
+        ];
+
+var webApp = express();
+
+webApp.use(bodyParser.json());
+webApp.use(bodyParser.urlencoded({extended: false}));
+
+webApp.use(function(req, res, next){
+    console.log(`${req.method} requsted for "${req.url}" - ${JSON.stringify(req.body)}`);
+    next();
+}).use(express.static('./public')).get('/dictionary-api',function(req, res){
+    res.json(terms);
+}).post('/dictionary-api',function(req, res){
+    terms.push(req.body);
+    res.json(terms);
+}).delete('/dictionary-api/:term', function(req, res){
+    terms = terms.filter(function(definition){
+        return definition.term.toLocaleLowerCase() !== req.params.term.toLocaleLowerCase();
+    });
+    res.json(terms);
+}).listen(8080);
+
+webApp.use(cors());
+
+console.log('Web App running on localhost port 8080.');
+
+module.exports = webApp;
+
+// // *** Node.js lesson using file stream piped to output stream ***
+// var web = require('http');
+// var fs = require('fs');
+
+// var webServer = web.createServer(function(req, res){
+//     res.writeHead(200, {"Content-Type":"text/html"});
+
+//     console.log(`${req.method} request for ${req.url}`);
+    
+//     if(req.method === 'GET' && req.url === '/') {
+//         fs.createReadStream('./public/index.html','UTF-8').pipe(res);    
+//     }
+
+// }).listen(8080);
 
 
+// // *** Node.js lesson using http ***
+// var web = require('http');
+
+// var webServer = web.createServer(function(req, res){
+//     res.writeHead(200, {"Content-Type":"text/html"});
+
+//     console.log(`${req.method} request for ${req.url}`);
+
+//     res.end(`
+//         <!DOCTYPE html>
+//         <html>
+//         <head>
+//             <title>HTML response</title>
+//         </head>
+//         <body>
+//             <h1>HTML information</h1>
+//             <p>${req.method}</p>
+//             <p>${req.url}</p>
+//             <p>${req.headers}</p>
+//         </body>
+//         </html>
+//     `);
+
+// }).listen(8080);
+
+// console.log(`Web Server is listening on port: 8080. `);
 
 // // *** Node.js lesson using file streams ***
 // var fs = require('fs');
